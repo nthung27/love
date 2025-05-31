@@ -1,4 +1,3 @@
-
 const colors = [
     "#eec996",
     "#8fb7d3",
@@ -67,18 +66,24 @@ Heart.prototype.update = function (i) {
 };
 Heart.prototype.draw = function (i) {
     ctx.globalAlpha = this.opacity;
-    ctx.font = `${180 * this.scale}px "CHỈ CÓ EM MÀ THÔI"`;
-    // ctx.font="20px";
+    ctx.font = `${180 * this.scale}px "CHỈ CÓ EM MÀ THÔI"`; // Hoặc thay bằng font có sẵn như "Arial"
     ctx.fillStyle = colors[i % 18];
-    ctx.fillText(
-        "NGUYỄN THÀNH HƯNG", //
-        this.x - this.width * 0.5,
-        this.y - this.height * 0.5,
-        this.width,
-        this.height
-    );
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
 
+    const lineSpacing = 150 * this.scale;
+
+    // Dòng 1
+    ctx.fillText("NGUYỄN THÀNH HƯNG", this.x, this.y - lineSpacing);
+
+    // Dòng 2
+    ctx.fillText("NGUYỄN THỊ HẬU", this.x, this.y);
+
+    // Dòng 3
+    ctx.fillText("29-05-2021", this.x, this.y + lineSpacing);
 };
+
+
 
 function render() {
     ctx.clearRect(0, 0, ww, wh);
@@ -391,3 +396,18 @@ const bgMusic = document.getElementById("bgMusic");
     // Phát nhạc khi người dùng chạm/click bất kỳ đâu trên màn hình
     document.body.addEventListener("click", playMusicOnce);
     document.body.addEventListener("touchstart", playMusicOnce);
+
+function resizeCanvas() {
+      canvases.forEach(c => {
+        c.width = window.innerWidth;
+        c.height = window.innerHeight;
+      });
+    }
+
+    window.addEventListener('resize', resizeCanvas);
+    window.addEventListener('load', resizeCanvas);
+
+    startBtn.addEventListener("click", () => {
+      bgMusic.play();
+      startBtn.style.display = "none";
+    });
