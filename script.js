@@ -66,24 +66,27 @@ Heart.prototype.update = function (i) {
 };
 Heart.prototype.draw = function (i) {
     ctx.globalAlpha = this.opacity;
-    ctx.font = `${180 * this.scale}px "CHỈ CÓ EM MÀ THÔI"`; // Hoặc thay bằng font có sẵn như "Arial"
+    ctx.font = `${180 * this.scale}px "CHỈ CÓ EM MÀ THÔI"`; // Có thể đổi lại font nếu cần
     ctx.fillStyle = colors[i % 18];
-    ctx.textAlign = "center";
-    ctx.textBaseline = "middle";
+    ctx.textAlign = "center";         
+    ctx.textBaseline = "middle";      
 
-    const lineSpacing = 150 * this.scale;
+    const lineSpacing = 100 * this.scale;  // Tăng khoảng cách giữa 2 dòng
 
-    // Dòng 1
-    ctx.fillText("NGUYỄN THÀNH HƯNG", this.x, this.y - lineSpacing);
+    // Dòng 1: cao hơn
+    ctx.fillText(
+        "NGUYỄN BÁ LONG QUÂN",
+        this.x,
+        this.y - lineSpacing
+    );
 
-    // Dòng 2
-    ctx.fillText("NGUYỄN THỊ HẬU", this.x, this.y);
-
-    // Dòng 3
-    ctx.fillText("29-05-2021", this.x, this.y + lineSpacing);
+    // Dòng 2: thấp hơn
+    ctx.fillText(
+        "❤️ ❤️ ❤️",
+        this.x,
+        this.y + (lineSpacing * 0.6) // khoảng cách nhỏ hơn dòng 1 nếu bạn muốn chữ thứ hai gần hơn
+    );
 };
-
-
 
 function render() {
     ctx.clearRect(0, 0, ww, wh);
